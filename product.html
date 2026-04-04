@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Products | FashionHub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-white text-gray-800">
+
+    <!-- Navbar -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-gray-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="index.html" class="text-2xl font-bold tracking-wide text-black">
+                    FASHION<span class="text-pink-600">HUB</span>
+                </a>
+
+                <nav class="hidden md:flex items-center gap-8">
+                    <a href="index.html" class="hover:text-pink-600 transition">Home</a>
+                    <a href="about.html" class="hover:text-pink-600 transition">About</a>
+                    <a href="products.html" class="text-pink-600 font-medium">Products</a>
+                    <a href="contact.html" class="hover:text-pink-600 transition">Contact</a>
+                    <a href="login.html" class="hover:text-pink-600 transition">Login</a>
+                    <a href="cart.html" class="relative hover:text-pink-600 transition">
+                        Cart
+                        <span id="cartCount"
+                            class="absolute -top-3 -right-4 bg-pink-600 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
+                            0
+                        </span>
+                    </a>
+                </nav>
+
+                <button id="menuBtn" class="md:hidden flex flex-col gap-1.5">
+                    <span class="w-6 h-0.5 bg-black"></span>
+                    <span class="w-6 h-0.5 bg-black"></span>
+                    <span class="w-6 h-0.5 bg-black"></span>
+                </button>
+            </div>
+
+            <div id="mobileMenu" class="hidden md:hidden pb-4">
+                <nav class="flex flex-col gap-3">
+                    <a href="index.html" class="hover:text-pink-600 transition">Home</a>
+                    <a href="about.html" class="hover:text-pink-600 transition">About</a>
+                    <a href="products.html" class="text-pink-600 font-medium">Products</a>
+                    <a href="contact.html" class="hover:text-pink-600 transition">Contact</a>
+                    <a href="login.html" class="hover:text-pink-600 transition">Login</a>
+                    <a href="cart.html" class="flex items-center gap-2 hover:text-pink-600 transition">
+                        Cart
+                        <span id="cartCountMobile"
+                            class="bg-pink-600 text-white text-xs px-2 py-0.5 rounded-full">0</span>
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Hero -->
+    <section class="bg-gray-50 py-16 md:py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto">
+                <p class="text-pink-600 font-semibold uppercase tracking-widest mb-4">Our Collection</p>
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-5">
+                    Discover pieces that define your style
+                </h1>
+                <p class="text-lg text-gray-600 leading-8">
+                    Explore a curated selection of fashion-forward products designed with elegance,
+                    simplicity, and modern taste in mind.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filters -->
+    <section class="py-8 border-b border-gray-200 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row gap-4 lg:items-center lg:justify-between">
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-900">All Products</h2>
+                    <p class="text-gray-500 mt-1">Browse our latest arrivals</p>
+                </div>
+
+                <div class="flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
+                    <input id="searchInput" type="text" placeholder="Search products..."
+                        class="w-full sm:w-72 border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-pink-500" />
+
+                    <select id="sortSelect"
+                        class="w-full sm:w-52 border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-pink-500">
+                        <option value="default">Sort by</option>
+                        <option value="low-high">Price: Low to High</option>
+                        <option value="high-low">Price: High to Low</option>
+                        <option value="title-az">Title: A - Z</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Grid -->
+    <main class="py-14 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <div id="loading" class="text-center py-16">
+                <div
+                    class="w-10 h-10 border-4 border-pink-600 border-t-transparent rounded-full animate-spin mx-auto mb-4">
+                </div>
+                <p class="text-gray-500 text-lg">Loading products...</p>
+            </div>
+
+            <div id="errorMessage" class="hidden text-center py-16">
+                <p class="text-red-500 text-lg font-medium">Failed to load products.</p>
+            </div>
+
+            <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"></div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid md:grid-cols-3 gap-10">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">FashionHub</h3>
+                    <p class="text-gray-400 leading-7">
+                        Your one-stop destination for stylish, modern, and timeless fashion collections.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="index.html" class="hover:text-pink-500 transition">Home</a></li>
+                        <li><a href="about.html" class="hover:text-pink-500 transition">About</a></li>
+                        <li><a href="products.html" class="hover:text-pink-500 transition">Products</a></li>
+                        <li><a href="contact.html" class="hover:text-pink-500 transition">Contact</a></li>
+                        <li><a href="login.html" class="hover:text-pink-500 transition">Login</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contact</h4>
+                    <p class="text-gray-400 mb-2">Email: support@fashionhub.com</p>
+                    <p class="text-gray-400 mb-2">Phone: +123 456 7890</p>
+                    <p class="text-gray-400">Address: 12 Fashion Street, Lagos</p>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 mt-10 pt-6 text-center text-gray-500 text-sm">
+                © 2026 FashionHub. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function renderProducts(products) {
+            productGrid.innerHTML = "";
+
+            if (!products.length) {
+                productGrid.innerHTML = `
+        <div class="col-span-full text-center py-16">
+          <p class="text-gray-500 text-lg">No products found.</p>
+        </div>
+      `;
+                return;
+            }
+
+            products.forEach(product => {
+                const productCard = document.createElement("div");
+                productCard.className = "group bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition duration-300 flex flex-col";
+
+                productCard.innerHTML = `
+        <a href="product-details.html?id=${product.id}" class="block">
+          <div class="relative h-72 bg-gray-100 overflow-hidden">
+            <img
+              src="${product.thumbnail}"
+              alt="${product.title}"
+              class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+            />
+            <div class="absolute top-4 left-4">
+              <span class="bg-white text-pink-600 text-xs font-semibold px-3 py-1 rounded-full shadow">
+                ${product.brand || "Fashion"}
+              </span>
+            </div>
+          </div>
+        </a>
+
+        <div class="p-5 flex flex-col flex-1">
+          <p class="text-sm text-gray-500 mb-2 capitalize">${product.category}</p>
+
+          <a href="product-details.html?id=${product.id}">
+            <h3 class="text-lg font-semibold text-gray-900 mb-3 min-h-[56px] hover:text-pink-600 transition">
+              ${product.title}
+            </h3>
+          </a>
+
+          <p class="text-sm text-gray-600 leading-6 mb-4 min-h-[72px] overflow-hidden">
+            ${product.description.slice(0, 90)}...
+          </p>
+
+          <div class="mt-auto flex items-center justify-between">
+            <p class="text-xl font-bold text-pink-600">$${product.price}</p>
+
+            <button
+              class="add-to-cart bg-black text-white px-4 py-2 rounded-lg hover:bg-pink-600 transition"
+              data-id="${product.id}"
+            >
+              Add to Cart
+            </button>
+          </div>
+        </div>
+      `;
+
+                productGrid.appendChild(productCard);
+            });
+
+            attachCartEvents(products);
+        }
+    </script>
+</body>
+
+</html>

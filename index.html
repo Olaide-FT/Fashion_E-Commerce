@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fashion Store</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-white text-gray-800">
+
+    <!-- Navbar -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-gray-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+
+                <!-- Logo -->
+                <a href="#" class="text-2xl font-bold tracking-wide text-black">
+                    FASHION<span class="text-pink-600">HUB</span>
+                </a>
+
+                <!-- Desktop Menu -->
+                <nav class="hidden md:flex items-center gap-8">
+                    <a href="index.html" class="hover:text-pink-600 transition">Home</a>
+                    <a href="about.html" class="hover:text-pink-600 transition">About</a>
+                    <a href="product.html" class="hover:text-pink-600 transition">Products</a>
+                    <a href="contact.html" class="hover:text-pink-600 transition">Contact</a>
+                    <a href="login.html" class="hover:text-pink-600 transition">Login</a>
+
+                    <!-- Cart -->
+                    <a href="cart.html" class="relative hover:text-pink-600 transition">
+                        Cart
+                        <span
+                            class="absolute -top-3 -right-4 bg-pink-600 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
+                            2
+                        </span>
+                    </a>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <button id="menuBtn" class="md:hidden flex flex-col gap-1.5">
+                    <span class="w-6 h-0.5 bg-black"></span>
+                    <span class="w-6 h-0.5 bg-black"></span>
+                    <span class="w-6 h-0.5 bg-black"></span>
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden md:hidden pb-4">
+                <nav class="flex flex-col gap-3">
+                    <a href="#" class="hover:text-pink-600 transition">Home</a>
+                    <a href="#" class="hover:text-pink-600 transition">About</a>
+                    <a href="#" class="hover:text-pink-600 transition">Contact</a>
+                    <a href="#" class="hover:text-pink-600 transition">Login</a>
+                    <a href="#" class="flex items-center gap-2 hover:text-pink-600 transition">
+                        Cart
+                        <span class="bg-pink-600 text-white text-xs px-2 py-0.5 rounded-full">2</span>
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <!-- Hero Section (Carousel) -->
+    <section class="relative overflow-hidden">
+
+        <!-- Slides Wrapper -->
+        <div id="carousel" class="relative h-[80vh]">
+
+            <!-- Slide 1 -->
+            <div class="carousel-slide absolute inset-0 transition-opacity duration-700 opacity-100">
+                <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1400&q=80"
+                    class="w-full h-full object-cover" />
+                <div class="absolute inset-0 bg-black/40"></div>
+
+                <div class="absolute inset-0 flex items-center max-w-7xl mx-auto px-6">
+                    <div class="text-white max-w-xl">
+                        <p class="uppercase tracking-widest text-pink-400 mb-4">New Arrival</p>
+                        <h1 class="text-4xl md:text-6xl font-bold mb-6">
+                            Elevate Your Style
+                        </h1>
+                        <p class="mb-6 text-lg">
+                            Discover premium outfits designed for confidence and elegance.
+                        </p>
+                        <a href="#" class="bg-pink-600 px-6 py-3 rounded-lg font-semibold hover:bg-pink-700 transition">
+                            Shop Now
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="carousel-slide absolute inset-0 transition-opacity duration-700 opacity-0">
+                <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1400&q=80"
+                    class="w-full h-full object-cover" />
+                <div class="absolute inset-0 bg-black/40"></div>
+
+                <div class="absolute inset-0 flex items-center max-w-7xl mx-auto px-6">
+                    <div class="text-white max-w-xl">
+                        <p class="uppercase tracking-widest text-pink-400 mb-4">Trending</p>
+                        <h1 class="text-4xl md:text-6xl font-bold mb-6">
+                            Modern Fashion Collection
+                        </h1>
+                        <p class="mb-6 text-lg">
+                            Step into style with the latest fashion trends.
+                        </p>
+                        <a href="#" class="bg-pink-600 px-6 py-3 rounded-lg font-semibold hover:bg-pink-700 transition">
+                            Explore Now
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="carousel-slide absolute inset-0 transition-opacity duration-700 opacity-0">
+                <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=1400&q=80"
+                    class="w-full h-full object-cover" />
+                <div class="absolute inset-0 bg-black/40"></div>
+
+                <div class="absolute inset-0 flex items-center max-w-7xl mx-auto px-6">
+                    <div class="text-white max-w-xl">
+                        <p class="uppercase tracking-widest text-pink-400 mb-4">Exclusive</p>
+                        <h1 class="text-4xl md:text-6xl font-bold mb-6">
+                            Luxury Streetwear
+                        </h1>
+                        <p class="mb-6 text-lg">
+                            Premium outfits crafted for bold personalities.
+                        </p>
+                        <a href="#" class="bg-pink-600 px-6 py-3 rounded-lg font-semibold hover:bg-pink-700 transition">
+                            Discover
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Controls -->
+        <button id="prevSlide"
+            class="absolute left-5 top-1/2 -translate-y-1/2  p-3 rounded-full shadow ">
+            
+        </button>
+
+        <button id="nextSlide"
+            class="absolute right-5 top-1/2 -translate-y-1/2  p-3 rounded-full shadow ">
+            
+        </button>
+
+        <!-- Dots -->
+        <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3">
+            <span class="dot w-3 h-3 bg-white rounded-full opacity-100 cursor-pointer"></span>
+            <span class="dot w-3 h-3 bg-white rounded-full opacity-50 cursor-pointer"></span>
+            <span class="dot w-3 h-3 bg-white rounded-full opacity-50 cursor-pointer"></span>
+        </div>
+
+    </section>
+
+    <!-- Main Placeholder -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="text-center">
+            <h2 class="text-3xl font-bold mb-4">Welcome to FashionHub</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">
+                This is a base homepage template for your fashion store. You can now add product sections,
+                featured collections, testimonials, newsletter signup, and more.
+            </p>
+        </div>
+
+        <!-- Products Section -->
+        <section class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between mb-8">
+                    <div>
+                        <p class="text-pink-600 font-semibold uppercase tracking-widest mb-2">Shop</p>
+                        <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Featured Products</h2>
+                    </div>
+                </div>
+
+                <!-- Loading text -->
+                <div id="loading" class="text-center text-gray-500 text-lg">Loading products...</div>
+
+                <!-- Product Grid -->
+                <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid md:grid-cols-3 gap-10">
+
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">FashionHub</h3>
+                    <p class="text-gray-400 leading-7">
+                        Your one-stop destination for stylish, modern, and timeless fashion collections.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-pink-500 transition">Home</a></li>
+                        <li><a href="#" class="hover:text-pink-500 transition">About</a></li>
+                        <li><a href="#" class="hover:text-pink-500 transition">Contact</a></li>
+                        <li><a href="#" class="hover:text-pink-500 transition">Login</a></li>
+                        <li><a href="#" class="hover:text-pink-500 transition">Cart</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contact</h4>
+                    <p class="text-gray-400 mb-2">Email: support@fashionhub.com</p>
+                    <p class="text-gray-400 mb-2">Phone: +123 456 7890</p>
+                    <p class="text-gray-400">Address: 12 Fashion Street, Lagos</p>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 mt-10 pt-6 text-center text-gray-500 text-sm">
+                © 2026 FashionHub. All rights reserved.
+            </div>
+        </div>
+    </footer>
+    <script src="fashion.js"></script>
+</body>
+
+</html>

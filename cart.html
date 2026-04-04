@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cart | FashionHub</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- Navbar -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-gray-200 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="index.html" class="text-2xl font-bold tracking-wide text-black">
+          FASHION<span class="text-pink-600">HUB</span>
+        </a>
+
+        <nav class="hidden md:flex items-center gap-8">
+          <a href="index.html" class="hover:text-pink-600 transition">Home</a>
+          <a href="about.html" class="hover:text-pink-600 transition">About</a>
+          <a href="products.html" class="hover:text-pink-600 transition">Products</a>
+          <a href="contact.html" class="hover:text-pink-600 transition">Contact</a>
+          <a href="login.html" class="hover:text-pink-600 transition">Login</a>
+          <a href="cart.html" class="relative text-pink-600 font-medium">
+            Cart
+            <span id="cartCount" class="absolute -top-3 -right-4 bg-pink-600 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">0</span>
+          </a>
+        </nav>
+
+        <button id="menuBtn" class="md:hidden flex flex-col gap-1.5">
+          <span class="w-6 h-0.5 bg-black"></span>
+          <span class="w-6 h-0.5 bg-black"></span>
+          <span class="w-6 h-0.5 bg-black"></span>
+        </button>
+      </div>
+
+      <div id="mobileMenu" class="hidden md:hidden pb-4">
+        <nav class="flex flex-col gap-3">
+          <a href="index.html" class="hover:text-pink-600 transition">Home</a>
+          <a href="about.html" class="hover:text-pink-600 transition">About</a>
+          <a href="products.html" class="hover:text-pink-600 transition">Products</a>
+          <a href="contact.html" class="hover:text-pink-600 transition">Contact</a>
+          <a href="login.html" class="hover:text-pink-600 transition">Login</a>
+          <a href="cart.html" class="flex items-center gap-2 text-pink-600 font-medium">
+            Cart
+            <span id="cartCountMobile" class="bg-pink-600 text-white text-xs px-2 py-0.5 rounded-full">0</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="bg-white border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+        <div>
+          <p class="text-pink-600 font-semibold uppercase tracking-widest mb-3">Shopping Cart</p>
+          <h1 class="text-4xl md:text-5xl font-bold text-gray-900">Your selected pieces</h1>
+        </div>
+        <a href="products.html" class="text-pink-600 font-medium hover:underline">
+          Continue shopping
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cart Content -->
+  <main class="py-14">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div id="cartContainer"></div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-black text-white mt-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="grid md:grid-cols-3 gap-10">
+        <div>
+          <h3 class="text-2xl font-bold mb-4">FashionHub</h3>
+          <p class="text-gray-400 leading-7">
+            Your one-stop destination for stylish, modern, and timeless fashion collections.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+          <ul class="space-y-2 text-gray-400">
+            <li><a href="index.html" class="hover:text-pink-500 transition">Home</a></li>
+            <li><a href="about.html" class="hover:text-pink-500 transition">About</a></li>
+            <li><a href="products.html" class="hover:text-pink-500 transition">Products</a></li>
+            <li><a href="contact.html" class="hover:text-pink-500 transition">Contact</a></li>
+            <li><a href="cart.html" class="hover:text-pink-500 transition">Cart</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-lg font-semibold mb-4">Contact</h4>
+          <p class="text-gray-400 mb-2">Email: support@fashionhub.com</p>
+          <p class="text-gray-400 mb-2">Phone: +123 456 7890</p>
+          <p class="text-gray-400">Address: 12 Fashion Street, Lagos</p>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-800 mt-10 pt-6 text-center text-gray-500 text-sm">
+        © 2026 FashionHub. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const menuBtn = document.getElementById("menuBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+    const cartCount = document.getElementById("cartCount");
+    const cartCountMobile = document.getElementById("cartCountMobile");
+    const cartContainer = document.getElementById("cartContainer");
+
+    const CART_KEY = "fashionCart";
+
+    menuBtn.addEventListener("click", () => {
+      mobileMenu.classList.toggle("hidden");
+    });
+
+    function getCart() {
+      return JSON.parse(localStorage.getItem(CART_KEY)) || [];
+    }
+
+    function saveCart(cart) {
+      localStorage.setItem(CART_KEY, JSON.stringify(cart));
+    }
+
+    function updateCartCount() {
+      const cart = getCart();
+      const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+      cartCount.textContent = totalItems;
+      cartCountMobile.textContent = totalItems;
+    }
+
+    function removeFromCart(productId) {
+      const cart = getCart().filter(item => item.id !== productId);
+      saveCart(cart);
+      updateCartCount();
+      renderCart();
+    }
+
+    function increaseQuantity(productId) {
+      const cart = getCart();
+      const item = cart.find(product => product.id === productId);
+
+      if (item) {
+        item.quantity += 1;
+      }
+
+      saveCart(cart);
+      updateCartCount();
+      renderCart();
+    }
+
+    function decreaseQuantity(productId) {
+      const cart = getCart();
+      const item = cart.find(product => product.id === productId);
+
+      if (item) {
+        item.quantity -= 1;
+
+        if (item.quantity <= 0) {
+          const updatedCart = cart.filter(product => product.id !== productId);
+          saveCart(updatedCart);
+        } else {
+          saveCart(cart);
+        }
+      }
+
+      updateCartCount();
+      renderCart();
+    }
+
+    function renderCart() {
+      const cart = getCart();
+
+      if (!cart.length) {
+        cartContainer.innerHTML = `
+          <div class="bg-white rounded-3xl p-10 text-center shadow-sm border border-gray-200">
+            <h2 class="text-3xl font-bold mb-4">Your cart is empty</h2>
+            <p class="text-gray-500 mb-8">Looks like you haven’t added any products yet.</p>
+            <a href="products.html" class="inline-block bg-pink-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-pink-700 transition">
+              Start Shopping
+            </a>
+          </div>
+        `;
+        return;
+      }
+
+      const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+      const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+      cartContainer.innerHTML = `
+        <div class="grid lg:grid-cols-3 gap-10">
+          <div class="lg:col-span-2 space-y-5">
+            ${cart.map(item => `
+              <div class="bg-white rounded-3xl p-5 shadow-sm border border-gray-200 flex flex-col sm:flex-row gap-5 items-center">
+                <div class="w-28 h-28 rounded-2xl bg-gray-100 overflow-hidden shrink-0">
+                  <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover">
+                </div>
+
+                <div class="flex-1 text-center sm:text-left">
+                  <h3 class="text-xl font-semibold text-gray-900 mb-2">${item.title}</h3>
+                  <p class="text-pink-600 text-lg font-bold">$${item.price}</p>
+                </div>
+
+                <div class="flex items-center gap-3">
+                  <button class="decrease w-10 h-10 rounded-full border border-gray-300 hover:border-pink-600 hover:text-pink-600 transition" data-id="${item.id}">
+                    -
+                  </button>
+                  <span class="w-8 text-center font-semibold">${item.quantity}</span>
+                  <button class="increase w-10 h-10 rounded-full border border-gray-300 hover:border-pink-600 hover:text-pink-600 transition" data-id="${item.id}">
+                    +
+                  </button>
+                </div>
+
+                <div class="text-center sm:text-right">
+                  <p class="text-lg font-bold text-gray-900 mb-3">$${(item.price * item.quantity).toFixed(2)}</p>
+                  <button class="remove text-red-500 hover:text-red-600 font-medium" data-id="${item.id}">
+                    Remove
+                  </button>
+                </div>
+              </div>
+            `).join("")}
+          </div>
+
+          <div>
+            <div class="bg-white rounded-3xl p-6 shadow-sm border border-gray-200 sticky top-24">
+              <h3 class="text-2xl font-bold mb-6">Order Summary</h3>
+
+              <div class="space-y-4 text-gray-600">
+                <div class="flex items-center justify-between">
+                  <span>Total Items</span>
+                  <span>${totalItems}</span>
+                </div>
+
+                <div class="flex items-center justify-between">
+                  <span>Shipping</span>
+                  <span>Free</span>
+                </div>
+
+                <div class="border-t border-gray-200 pt-4 flex items-center justify-between text-lg font-bold text-gray-900">
+                  <span>Total</span>
+                  <span>$${subtotal.toFixed(2)}</span>
+                </div>
+              </div>
+
+              <button class="w-full mt-6 bg-black text-white py-3 rounded-xl font-medium hover:bg-pink-600 transition">
+                Proceed to Checkout
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+
+      document.querySelectorAll(".remove").forEach(button => {
+        button.addEventListener("click", () => {
+          removeFromCart(Number(button.dataset.id));
+        });
+      });
+
+      document.querySelectorAll(".increase").forEach(button => {
+        button.addEventListener("click", () => {
+          increaseQuantity(Number(button.dataset.id));
+        });
+      });
+
+      document.querySelectorAll(".decrease").forEach(button => {
+        button.addEventListener("click", () => {
+          decreaseQuantity(Number(button.dataset.id));
+        });
+      });
+    }
+
+    updateCartCount();
+    renderCart();
+  </script>
+</body>
+</html>

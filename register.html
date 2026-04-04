@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register | FashionHub</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- Navbar -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-gray-200 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="index.html" class="text-2xl font-bold tracking-wide text-black">
+          FASHION<span class="text-pink-600">HUB</span>
+        </a>
+
+        <nav class="hidden md:flex items-center gap-8">
+          <a href="index.html" class="hover:text-pink-600 transition">Home</a>
+          <a href="about.html" class="hover:text-pink-600 transition">About</a>
+          <a href="product.html" class="hover:text-pink-600 transition">Products</a>
+          <a href="contact.html" class="hover:text-pink-600 transition">Contact</a>
+          <a href="login.html" class="hover:text-pink-600 transition">Login</a>
+          <a href="cart.html" class="relative hover:text-pink-600 transition">
+            Cart
+            <span class="absolute -top-3 -right-4 bg-pink-600 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">0</span>
+          </a>
+        </nav>
+
+        <button id="menuBtn" class="md:hidden flex flex-col gap-1.5">
+          <span class="w-6 h-0.5 bg-black"></span>
+          <span class="w-6 h-0.5 bg-black"></span>
+          <span class="w-6 h-0.5 bg-black"></span>
+        </button>
+      </div>
+
+      <div id="mobileMenu" class="hidden md:hidden pb-4">
+        <nav class="flex flex-col gap-3">
+          <a href="index.html" class="hover:text-pink-600 transition">Home</a>
+          <a href="about.html" class="hover:text-pink-600 transition">About</a>
+          <a href="contact.html" class="hover:text-pink-600 transition">Contact</a>
+          <a href="login.html" class="hover:text-pink-600 transition">Login</a>
+          <a href="cart.html" class="flex items-center gap-2 hover:text-pink-600 transition">
+            Cart
+            <span class="bg-pink-600 text-white text-xs px-2 py-0.5 rounded-full">0</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Registration Section -->
+  <section class="min-h-[calc(100vh-64px)] flex items-center py-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      <div class="grid lg:grid-cols-2 bg-white rounded-3xl overflow-hidden shadow-lg border border-gray-200">
+
+        <div class="p-8 md:p-12 order-2 lg:order-1">
+          <div class="max-w-md mx-auto">
+            <p class="text-pink-600 font-semibold uppercase tracking-widest mb-3">Register</p>
+            <h1 class="text-3xl md:text-4xl font-bold mb-3">Create your account</h1>
+            <p class="text-gray-600 mb-8">
+              Join FashionHub and enjoy a smooth shopping experience tailored to your style.
+            </p>
+
+            <form class="space-y-5">
+              <div class="grid sm:grid-cols-2 gap-5">
+                <div>
+                  <label class="block text-sm font-medium mb-2">First Name</label>
+                  <input
+                    type="text"
+                    placeholder="First name"
+                    class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-pink-500"
+                  />
+                </div>
+
+                <div>
+                  <label class="block text-sm font-medium mb-2">Last Name</label>
+                  <input
+                    type="text"
+                    placeholder="Last name"
+                    class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-pink-500"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium mb-2">Email Address</label>
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-pink-500"
+                />
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium mb-2">Password</label>
+                <input
+                  type="password"
+                  placeholder="Create password"
+                  class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-pink-500"
+                />
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium mb-2">Confirm Password</label>
+                <input
+                  type="password"
+                  placeholder="Confirm password"
+                  class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-pink-500"
+                />
+              </div>
+
+              <label class="flex items-start gap-3 text-sm text-gray-600">
+                <input type="checkbox" class="mt-1 rounded border-gray-300 text-pink-600 focus:ring-pink-500">
+                <span>
+                  I agree to the
+                  <a href="#" class="text-pink-600 hover:underline">Terms</a>
+                  and
+                  <a href="#" class="text-pink-600 hover:underline">Privacy Policy</a>
+                </span>
+              </label>
+
+              <button
+                type="submit"
+                class="w-full bg-pink-600 text-white py-3 rounded-lg font-medium hover:bg-pink-700 transition"
+              >
+                Create Account
+              </button>
+            </form>
+
+            <p class="text-sm text-gray-600 mt-6 text-center">
+              Already have an account?
+              <a href="login.html" class="text-pink-600 font-medium hover:underline">Login</a>
+            </p>
+          </div>
+        </div>
+
+        <div class="hidden lg:flex relative order-1 lg:order-2">
+          <img
+            src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1000&q=80"
+            alt="Register fashion"
+            class="w-full h-full object-cover"
+          />
+          <div class="absolute inset-0 bg-black/40"></div>
+          <div class="absolute inset-0 p-10 flex flex-col justify-end text-white">
+            <p class="uppercase tracking-widest text-pink-300 mb-3">New Here</p>
+            <h2 class="text-4xl font-bold mb-4">Create your style profile</h2>
+            <p class="text-white/90 leading-7">
+              Register to save your details, track your selections, and enjoy effortless fashion shopping.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const menuBtn = document.getElementById("menuBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+    menuBtn.addEventListener("click", () => mobileMenu.classList.toggle("hidden"));
+  </script>
+</body>
+</html>
