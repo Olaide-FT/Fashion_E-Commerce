@@ -14,21 +14,23 @@
     <header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-gray-200 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
-                <a href="index.html" class="text-2xl font-bold tracking-wide text-black">
+                <a href="../index.html" class="text-2xl font-bold tracking-wide text-black">
                     FASHION<span class="text-pink-600">HUB</span>
                 </a>
 
                 <nav class="hidden md:flex items-center gap-8">
-                    <a href="index.html" class="hover:text-pink-600 transition">Home</a>
+                    <a href="../index.html" class="hover:text-pink-600 transition">Home</a>
                     <a href="about.html" class="hover:text-pink-600 transition">About</a>
-                    <a href="products.html" class="text-pink-600 font-medium">Products</a>
+                    <a href="product.html" class="hover:text-pink-600 transition">Products</a>
                     <a href="contact.html" class="hover:text-pink-600 transition">Contact</a>
                     <a href="login.html" class="hover:text-pink-600 transition">Login</a>
+
+                    <!-- Cart -->
                     <a href="cart.html" class="relative hover:text-pink-600 transition">
                         Cart
-                        <span id="cartCount"
+                        <span
                             class="absolute -top-3 -right-4 bg-pink-600 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
-                            0
+                            2
                         </span>
                     </a>
                 </nav>
@@ -42,15 +44,14 @@
 
             <div id="mobileMenu" class="hidden md:hidden pb-4">
                 <nav class="flex flex-col gap-3">
-                    <a href="index.html" class="hover:text-pink-600 transition">Home</a>
+                    <a href="../index.html" class="hover:text-pink-600 transition">Home</a>
                     <a href="about.html" class="hover:text-pink-600 transition">About</a>
-                    <a href="products.html" class="text-pink-600 font-medium">Products</a>
+                    <a href="product.html" class="hover:text-pink-600 transition">Products</a>
                     <a href="contact.html" class="hover:text-pink-600 transition">Contact</a>
                     <a href="login.html" class="hover:text-pink-600 transition">Login</a>
                     <a href="cart.html" class="flex items-center gap-2 hover:text-pink-600 transition">
                         Cart
-                        <span id="cartCountMobile"
-                            class="bg-pink-600 text-white text-xs px-2 py-0.5 rounded-full">0</span>
+                        <span class="bg-pink-600 text-white text-xs px-2 py-0.5 rounded-full">2</span>
                     </a>
                 </nav>
             </div>
@@ -131,9 +132,9 @@
                 <div>
                     <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
                     <ul class="space-y-2 text-gray-400">
-                        <li><a href="index.html" class="hover:text-pink-500 transition">Home</a></li>
+                        <li><a href="../index.html" class="hover:text-pink-500 transition">Home</a></li>
                         <li><a href="about.html" class="hover:text-pink-500 transition">About</a></li>
-                        <li><a href="products.html" class="hover:text-pink-500 transition">Products</a></li>
+                        <li><a href="product.html" class="hover:text-pink-500 transition">Products</a></li>
                         <li><a href="contact.html" class="hover:text-pink-500 transition">Contact</a></li>
                         <li><a href="login.html" class="hover:text-pink-500 transition">Login</a></li>
                     </ul>
@@ -153,71 +154,7 @@
         </div>
     </footer>
 
-    <script>
-        function renderProducts(products) {
-            productGrid.innerHTML = "";
-
-            if (!products.length) {
-                productGrid.innerHTML = `
-        <div class="col-span-full text-center py-16">
-          <p class="text-gray-500 text-lg">No products found.</p>
-        </div>
-      `;
-                return;
-            }
-
-            products.forEach(product => {
-                const productCard = document.createElement("div");
-                productCard.className = "group bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition duration-300 flex flex-col";
-
-                productCard.innerHTML = `
-        <a href="product-details.html?id=${product.id}" class="block">
-          <div class="relative h-72 bg-gray-100 overflow-hidden">
-            <img
-              src="${product.thumbnail}"
-              alt="${product.title}"
-              class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
-            />
-            <div class="absolute top-4 left-4">
-              <span class="bg-white text-pink-600 text-xs font-semibold px-3 py-1 rounded-full shadow">
-                ${product.brand || "Fashion"}
-              </span>
-            </div>
-          </div>
-        </a>
-
-        <div class="p-5 flex flex-col flex-1">
-          <p class="text-sm text-gray-500 mb-2 capitalize">${product.category}</p>
-
-          <a href="product-details.html?id=${product.id}">
-            <h3 class="text-lg font-semibold text-gray-900 mb-3 min-h-[56px] hover:text-pink-600 transition">
-              ${product.title}
-            </h3>
-          </a>
-
-          <p class="text-sm text-gray-600 leading-6 mb-4 min-h-[72px] overflow-hidden">
-            ${product.description.slice(0, 90)}...
-          </p>
-
-          <div class="mt-auto flex items-center justify-between">
-            <p class="text-xl font-bold text-pink-600">$${product.price}</p>
-
-            <button
-              class="add-to-cart bg-black text-white px-4 py-2 rounded-lg hover:bg-pink-600 transition"
-              data-id="${product.id}"
-            >
-              Add to Cart
-            </button>
-          </div>
-        </div>
-      `;
-
-                productGrid.appendChild(productCard);
-            });
-
-            attachCartEvents(products);
-        }
-    </script>
+    <script src="../js/product.js"></script>
 </body>
 
 </html>

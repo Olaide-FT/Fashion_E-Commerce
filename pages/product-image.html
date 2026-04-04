@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product Details | FashionHub</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-white text-gray-800">
+
+  <!-- Navbar -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-gray-200 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="../index.html" class="text-2xl font-bold tracking-wide text-black">
+          FASHION<span class="text-pink-600">HUB</span>
+        </a>
+
+        <nav class="hidden md:flex items-center gap-8">
+          <a href="../index.html" class="hover:text-pink-600 transition">Home</a>
+          <a href="about.html" class="hover:text-pink-600 transition">About</a>
+          <a href="product.html" class="hover:text-pink-600 transition">Products</a>
+          <a href="contact.html" class="hover:text-pink-600 transition">Contact</a>
+          <a href="login.html" class="hover:text-pink-600 transition">Login</a>
+
+          <!-- Cart -->
+          <a href="cart.html" class="relative hover:text-pink-600 transition">
+            Cart
+            <span
+              class="absolute -top-3 -right-4 bg-pink-600 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
+              2
+            </span>
+          </a>
+        </nav>
+
+        <button id="menuBtn" class="md:hidden flex flex-col gap-1.5">
+          <span class="w-6 h-0.5 bg-black"></span>
+          <span class="w-6 h-0.5 bg-black"></span>
+          <span class="w-6 h-0.5 bg-black"></span>
+        </button>
+      </div>
+
+      <div id="mobileMenu" class="hidden md:hidden pb-4">
+        <nav class="flex flex-col gap-3">
+          <a href="../index.html" class="hover:text-pink-600 transition">Home</a>
+          <a href="about.html" class="hover:text-pink-600 transition">About</a>
+          <a href="product.html" class="hover:text-pink-600 transition">Products</a>
+          <a href="contact.html" class="hover:text-pink-600 transition">Contact</a>
+          <a href="login.html" class="hover:text-pink-600 transition">Login</a>
+          <a href="cart.html" class="flex items-center gap-2 hover:text-pink-600 transition">
+            Cart
+            <span class="bg-pink-600 text-white text-xs px-2 py-0.5 rounded-full">2</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Breadcrumb -->
+  <section class="bg-gray-50 border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <p class="text-sm text-gray-500">
+        <a href="../index.html" class="hover:text-pink-600">Home</a>
+        <span class="mx-2">/</span>
+        <a href="product.html" class="hover:text-pink-600">Products</a>
+        <span class="mx-2">/</span>
+        <span class="text-gray-800">Product Details</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- Product Details -->
+  <main class="py-14">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div id="loading" class="text-center py-16">
+        <div class="w-10 h-10 border-4 border-pink-600 border-t-transparent rounded-full animate-spin mx-auto mb-4">
+        </div>
+        <p class="text-gray-500 text-lg">Loading product...</p>
+      </div>
+
+      <div id="errorMessage" class="hidden text-center py-16">
+        <p class="text-red-500 text-lg font-medium">Failed to load product.</p>
+      </div>
+
+      <div id="productDetails"></div>
+    </div>
+  </main>
+
+  <!-- Related Products -->
+  <section class="py-14 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between mb-8">
+        <h2 class="text-3xl font-bold">You may also like</h2>
+        <a href="product.html" class="text-pink-600 font-medium hover:underline">View all</a>
+      </div>
+
+      <div id="relatedProducts" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"></div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-black text-white mt-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="grid md:grid-cols-3 gap-10">
+        <div>
+          <h3 class="text-2xl font-bold mb-4">FashionHub</h3>
+          <p class="text-gray-400 leading-7">
+            Your one-stop destination for stylish, modern, and timeless fashion collections.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+          <ul class="space-y-2 text-gray-400">
+            <li><a href="../index.html" class="hover:text-pink-500 transition">Home</a></li>
+            <li><a href="about.html" class="hover:text-pink-500 transition">About</a></li>
+            <li><a href="product.html" class="hover:text-pink-500 transition">Products</a></li>
+            <li><a href="contact.html" class="hover:text-pink-500 transition">Contact</a></li>
+            <li><a href="cart.html" class="hover:text-pink-500 transition">Cart</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-lg font-semibold mb-4">Contact</h4>
+          <p class="text-gray-400 mb-2">Email: support@fashionhub.com</p>
+          <p class="text-gray-400 mb-2">Phone: +123 456 7890</p>
+          <p class="text-gray-400">Address: 12 Fashion Street, Lagos</p>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-800 mt-10 pt-6 text-center text-gray-500 text-sm">
+        © 2026 FashionHub. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/product-image.js"></script>
+</body>
+
+</html>
