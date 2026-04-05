@@ -1,11 +1,6 @@
-const menuBtn = document.getElementById("menuBtn");
-const mobileMenu = document.getElementById("mobileMenu");
 const cartContainer = document.getElementById("cartContainer");
 const CART_KEY = "fashionCart";
 
-if (menuBtn && mobileMenu) {
-  menuBtn.addEventListener("click", () => mobileMenu.classList.toggle("hidden"));
-}
 
 function getCart() { return JSON.parse(localStorage.getItem(CART_KEY)) || []; }
 function saveCart(cart) { localStorage.setItem(CART_KEY, JSON.stringify(cart)); }

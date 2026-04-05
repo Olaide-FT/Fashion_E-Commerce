@@ -8,9 +8,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const isLoginPage = path.includes("login.html");
   const isRegisterPage = path.includes("register.html");
 
-  // -----------------------------
-  // Helpers
-  // -----------------------------
+  
+
   const getUsers = () => JSON.parse(localStorage.getItem(USERS_KEY)) || [];
 
   const saveUsers = (users) => {
@@ -177,7 +176,7 @@ document.addEventListener("DOMContentLoaded", () => {
       );
 
       if (!foundUser) {
-        showMessage(form, "Invalid email or password.");
+        showMessage(form, "You don't have an account or entered wrong credentials.");
         return;
       }
 

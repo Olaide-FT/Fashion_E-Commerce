@@ -1,14 +1,10 @@
-const menuBtn = document.getElementById("menuBtn");
-const mobileMenu = document.getElementById("mobileMenu");
+
 const productDetails = document.getElementById("productDetails");
 const relatedProducts = document.getElementById("relatedProducts");
 const loading = document.getElementById("loading");
 const errorMessage = document.getElementById("errorMessage");
 const CART_KEY = "fashionCart";
 
-if (menuBtn && mobileMenu) {
-  menuBtn.addEventListener("click", () => mobileMenu.classList.toggle("hidden"));
-}
 
 function getProductIdFromURL() {
   const params = new URLSearchParams(window.location.search);

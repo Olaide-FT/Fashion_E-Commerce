@@ -1,12 +1,3 @@
-// mobileMenu
-const menuBtn = document.getElementById("menuBtn");
-const mobileMenu = document.getElementById("mobileMenu");
-if (menuBtn && mobileMenu) {
-  menuBtn.addEventListener("click", () => {
-    mobileMenu.classList.toggle("hidden");
-  });
-}
-
 // carousel
 const slides = document.querySelectorAll(".carousel-slide");
 const dots = document.querySelectorAll(".dot");

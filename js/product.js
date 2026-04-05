@@ -1,5 +1,3 @@
-const menuBtn = document.getElementById("menuBtn");
-const mobileMenu = document.getElementById("mobileMenu");
 const productGrid = document.getElementById("productGrid");
 const loading = document.getElementById("loading");
 const errorMessage = document.getElementById("errorMessage");
@@ -8,9 +6,6 @@ const sortSelect = document.getElementById("sortSelect");
 const CART_KEY = "fashionCart";
 let allProducts = [];
 
-if (menuBtn && mobileMenu) {
-  menuBtn.addEventListener("click", () => mobileMenu.classList.toggle("hidden"));
-}
 
 function getCart() { return JSON.parse(localStorage.getItem(CART_KEY)) || []; }
 function saveCart(cart) { localStorage.setItem(CART_KEY, JSON.stringify(cart)); }
