@@ -1,5 +1,3 @@
-
-
 document.addEventListener("DOMContentLoaded", () => {
   const USERS_KEY = "fashionHubUsers";
   const CURRENT_USER_KEY = "fashionHubCurrentUser";
@@ -8,7 +6,34 @@ document.addEventListener("DOMContentLoaded", () => {
   const isLoginPage = path.includes("login.html");
   const isRegisterPage = path.includes("register.html");
 
-  
+  function preventNumbers(input) {
+    // Block number keys while typing
+    input.addEventListener("keydown", (e) => {
+      if (/[0-9]/.test(e.key)) {
+        e.preventDefault();
+      }
+    });
+
+    // Remove numbers if pasted or typed
+    input.addEventListener("input", () => {
+      input.value = input.value.replace(/[0-9]/g, "");
+    });
+
+    // Handle paste specifically
+    input.addEventListener("paste", (e) => {
+      e.preventDefault();
+      let pasted = (e.clipboardData || window.clipboardData).getData("text");
+      pasted = pasted.replace(/[0-9]/g, "");
+      document.execCommand("insertText", false, pasted);
+    });
+  }
+
+  // Apply to all name fields (works for both pages)
+  const nameInputs = document.querySelectorAll(
+    'input[placeholder="First name"], input[placeholder="Last name"], input[placeholder="Enter first name"], input[placeholder="Enter last name"]'
+  );
+
+  nameInputs.forEach(preventNumbers);
 
   const getUsers = () => JSON.parse(localStorage.getItem(USERS_KEY)) || [];
 
@@ -41,7 +66,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const messageBox = createMessageBox(form);
 
     messageBox.textContent = message;
-    messageBox.classList.remove("hidden", "bg-red-100", "text-red-700", "bg-green-100", "text-green-700");
+    messageBox.classList.remove(
+      "hidden",
+      "bg-red-100",
+      "text-red-700",
+      "bg-green-100",
+      "text-green-700"
+    );
 
     if (type === "success") {
       messageBox.classList.add("bg-green-100", "text-green-700");
@@ -58,15 +89,16 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  // -----------------------------
-  // Register page logic
-  // -----------------------------
   const initRegister = () => {
     const form = document.querySelector("form");
     if (!form) return;
 
-    const firstNameInput = form.querySelector('input[placeholder="First name"]');
-    const lastNameInput = form.querySelector('input[placeholder="Last name"]');
+    const firstNameInput = form.querySelector(
+      'input[placeholder="First name"]'
+    );
+    const lastNameInput = form.querySelector(
+      'input[placeholder="Last name"]'
+    );
     const emailInput = form.querySelector('input[type="email"]');
     const passwordInputs = form.querySelectorAll('input[type="password"]');
     const passwordInput = passwordInputs[0];
@@ -122,7 +154,7 @@ document.addEventListener("DOMContentLoaded", () => {
         firstName,
         lastName,
         email,
-        password, 
+        password,
         createdAt: new Date().toISOString(),
       };
 
@@ -138,7 +170,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
-  
   const initLogin = () => {
     const form = document.querySelector("form");
     if (!form) return;
@@ -176,7 +207,10 @@ document.addEventListener("DOMContentLoaded", () => {
       );
 
       if (!foundUser) {
-        showMessage(form, "You don't have an account or entered wrong credentials.");
+        showMessage(
+          form,
+          "You don't have an account or entered wrong credentials."
+        );
         return;
       }
 

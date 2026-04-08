@@ -6,9 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Fashion Store</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body class="bg-white text-gray-800">
+
+    <!-- Back to top -->
+    <button id="backToTop"
+        class="fixed bottom-6 right-6  h-11 w-11 items-center justify-center rounded-full  transition hover:-translate-y-1 bg-pink-600"
+        aria-label="Back to top">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
 
     <!-- Navbar -->
     <header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-gray-200 shadow-sm">
@@ -50,8 +60,8 @@
             <div id="mobileMenu" class="hidden md:hidden pb-4">
                 <nav class="flex flex-col gap-3">
                     <a href="index.html" class="hover:text-pink-600 transition">Home</a>
-                    <a href="./pages/about.html"  class="hover:text-pink-600 transition">About</a>
-                    <a href="./pages/product.html"  class="hover:text-pink-600 transition">Products</a>
+                    <a href="./pages/about.html" class="hover:text-pink-600 transition">About</a>
+                    <a href="./pages/product.html" class="hover:text-pink-600 transition">Products</a>
                     <a href="./pages/contact.html" class="hover:text-pink-600 transition">Contact</a>
                     <a href="./pages/login.html" class="hover:text-pink-600 transition">Login</a>
                     <a href="./pages/cart.html" class="flex items-center gap-2 hover:text-pink-600 transition">
@@ -139,14 +149,12 @@
         </div>
 
         <!-- Controls -->
-        <button id="prevSlide"
-            class="absolute left-5 top-1/2 -translate-y-1/2  p-3 rounded-full shadow ">
-            
+        <button id="prevSlide" class="absolute left-5 top-1/2 -translate-y-1/2  p-3 rounded-full shadow ">
+
         </button>
 
-        <button id="nextSlide"
-            class="absolute right-5 top-1/2 -translate-y-1/2  p-3 rounded-full shadow ">
-            
+        <button id="nextSlide" class="absolute right-5 top-1/2 -translate-y-1/2  p-3 rounded-full shadow ">
+
         </button>
 
         <!-- Dots -->

@@ -1,9 +1,8 @@
-
 const productDetails = document.getElementById("productDetails");
 const relatedProducts = document.getElementById("relatedProducts");
 const loading = document.getElementById("loading");
 const errorMessage = document.getElementById("errorMessage");
-const CART_KEY = "fashionCart";
+const CART = "fashionCart";
 
 
 function getProductIdFromURL() {
@@ -11,16 +10,53 @@ function getProductIdFromURL() {
   return params.get("id");
 }
 
-function getCart() { return JSON.parse(localStorage.getItem(CART_KEY)) || []; }
-function saveCart(cart) { localStorage.setItem(CART_KEY, JSON.stringify(cart)); }
+function getCart() {
+  return JSON.parse(localStorage.getItem(CART)) || [];
+}
+
+function saveCart(cart) {
+  localStorage.setItem(CART, JSON.stringify(cart));
+}
+
 function addToCart(product) {
   const cart = getCart();
+
   const existing = cart.find(item => item.id === product.id);
-  if (existing) existing.quantity += 1;
-  else cart.push({ id: product.id, title: product.title, price: product.price, image: product.thumbnail, quantity: 1 });
+
+  if (existing) {
+    existing.quantity += 1;
+  } else {
+    cart.push({ 
+      id: product.id, 
+      title: product.title, 
+      price: product.price, 
+      image: product.thumbnail || product.image, 
+      quantity: 1 
+    });
+  }
+
   saveCart(cart);
-  alert(product.title + " added to cart");
+
+  if (typeof updateCartCount === "function") {
+    updateCartCount();
+  }
+
+  // showToast(`${product.title} added to cart`);
 }
+
+// function showToast(message) {
+//   const toast = document.createElement("div");
+//   toast.textContent = message;
+
+//   toast.className =
+//     "fixed bottom-5 right-5 bg-black text-white px-4 py-2 rounded-lg shadow-lg text-sm z-50";
+
+//   document.body.appendChild(toast);
+
+//   setTimeout(() => {
+//     toast.remove();
+//   }, 2000);
+// }
 
 function renderProduct(product) {
   productDetails.innerHTML = `
@@ -37,7 +73,7 @@ function renderProduct(product) {
           <span class="bg-green-100 text-green-700 text-sm font-medium px-3 py-1 rounded-full">${product.discountPercentage}% off</span>
         </div>
         <p class="text-gray-600 leading-8 mb-8">${product.description}</p>
-        <div class="grid grid-cols-2 gap-4 mb-8">
+        <div class="grid grid-cols-1 gap-4 mb-8">
           <div class="bg-gray-50 rounded-2xl p-4"><p class="text-sm text-gray-500 mb-1">Rating</p><p class="font-semibold text-lg">${product.rating} / 5</p></div>
           <div class="bg-gray-50 rounded-2xl p-4"><p class="text-sm text-gray-500 mb-1">Stock</p><p class="font-semibold text-lg">${product.stock} available</p></div>
         </div>

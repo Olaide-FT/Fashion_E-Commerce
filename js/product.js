@@ -33,7 +33,7 @@ function renderProducts(products) {
         <div class="relative h-72 bg-gray-100 overflow-hidden">
           <img src="${product.thumbnail}" alt="${product.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
           <div class="absolute top-4 left-4">
-            <span class="bg-white text-pink-600 text-xs font-semibold px-3 py-1 rounded-full shadow">${product.brand || "Fashion"}</span>
+            <span class="bg-white text-pink-600 text-xs font-semibold px-3  py-1 rounded-full shadow">${product.brand || "Fashion"}</span>
           </div>
         </div>
       </a>
