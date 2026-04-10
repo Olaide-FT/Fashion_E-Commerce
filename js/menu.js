@@ -34,7 +34,7 @@ window.addEventListener("scroll", updateActiveNav);
 updateActiveNav();
 
 
-const revealItems = document.querySelectorAll("main");
+const revealItems = document.querySelectorAll(".reveal");
 
 revealItems.forEach((item) => {
     item.classList.add(
@@ -87,50 +87,51 @@ if (backToTop) {
     });
 }
 
-
-
-// Global variable
 let cartItemsCount = 0;
 
-// Function to update count
-function updateCartCount(change) {
-  cartItemsCount += change;
+// Update UI
+function renderCartCount() {
+    const desktop = document.getElementById("cartCount");
+    const mobile = document.getElementById("mobile-cart-count");
 
-  // Prevent going below 0
-  if (cartItemsCount < 0) {
-    cartItemsCount = 0;
-  }
-
-  // Update UI
-  const cartCountEl = document.getElementById("cartCount");
-  if (cartCountEl) {
-    cartCountEl.textContent = cartItemsCount;
-  }
+    if (desktop) desktop.textContent = cartItemsCount;
+    if (mobile) mobile.textContent = cartItemsCount;
 }
 
-// Add buttons
-document.querySelectorAll(".add-btn").forEach(button => {
-  button.addEventListener("click", () => {
-    updateCartCount(+1);
-  });
-});
+// Update count
+function updateCartCount(change) {
+    cartItemsCount += change;
 
-// Remove buttons
-document.querySelectorAll(".remove-btn").forEach(button => {
-  button.addEventListener("click", () => {
-    updateCartCount(-1);
-  });
-});
+    if (cartItemsCount < 0) cartItemsCount = 0;
 
+    renderCartCount();
+}
+
+function syncCartCount() {
+    const cart = JSON.parse(localStorage.getItem("fashionCart")) || [];
+
+    const total = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+    cartItemsCount = total;
+    renderCartCount();
+}
+
+// Run on every page load
+window.addEventListener("DOMContentLoaded", syncCartCount);
 
 function addToCart(product) {
-  const cart = getCart();
-  const existingItem = cart.find(item => item.id === product.id);
-  if (existingItem) {
-    existingItem.quantity += 1;
-  } else {
-    cart.push({ ...product, quantity: 1 });
-  }
-  saveCart(cart);
-  alert(`${product.title} added to cart`);
+    const cart = JSON.parse(localStorage.getItem("fashionCart")) || [];
+
+    const existing = cart.find(item => item.id === product.id);
+
+    if (existing) {
+        existing.quantity += 1;
+    } else {
+        cart.push({ ...product, quantity: 1 });
+    }
+
+    localStorage.setItem("fashionCart", JSON.stringify(cart));
+
+    updateCartCount(+1); 
+    alert("Product added to cart!");
 }

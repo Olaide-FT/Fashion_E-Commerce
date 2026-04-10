@@ -6,17 +6,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>FashionHub</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body class="bg-gray-50 text-gray-800">
 
   <!-- Back to top -->
   <button id="backToTop"
-        class="fixed bottom-6 right-6  h-11 w-11 items-center justify-center rounded-full  transition hover:-translate-y-1 bg-pink-600"
-        aria-label="Back to top">
-        <i class="fa-solid fa-arrow-up"></i>
-    </button>
+    class="fixed bottom-6 right-6  h-11 w-11 items-center justify-center rounded-full  transition hover:-translate-y-1 bg-pink-600 text-white"
+    aria-label="Back to top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
 
   <!-- Navbar -->
   <header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-gray-200 shadow-sm">
@@ -59,7 +61,7 @@
           <a href="login.html" class="hover:text-pink-600 transition">Login</a>
           <a href="cart.html" class="flex items-center gap-2 hover:text-pink-600 transition">
             Cart
-            <span class="bg-pink-600 text-white text-xs px-2 py-0.5 rounded-full">0</span>
+            <span id="mobile-cart-count" class="bg-pink-600 text-white text-xs px-2 py-0.5 rounded-full">0</span>
           </a>
         </nav>
       </div>
@@ -104,8 +106,16 @@
                   <label class="block text-sm font-medium">Password</label>
                   <a href="#" class="text-sm text-pink-600 hover:underline">Forgot Password?</a>
                 </div>
-                <input type="password" placeholder="Enter your password"
-                  class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-pink-500" />
+
+                <!-- Input wrapper -->
+                <div class="relative">
+                  <input id="passwordInput" type="password" placeholder="Enter your password"
+                    class="w-full border border-gray-300 rounded-lg px-4 py-3 pr-12 focus:outline-none focus:ring-2 focus:ring-pink-500" />
+
+                  <!-- Eye Icon -->
+                  <i id="togglePassword"
+                    class="fa-solid fa-eye absolute right-4 top-1/2 transform -translate-y-1/2 cursor-pointer text-gray-500 hover:text-pink-600"></i>
+                </div>
               </div>
 
               <div class="flex items-center justify-between">
