@@ -4,7 +4,9 @@ const loading = document.getElementById("loading");
 const errorMessage = document.getElementById("errorMessage");
 const CART = "fashionCart";
 
-
+// I used URLSearchParams to extract the product ID from 
+// the URL query string, allowing me to make the fetch 
+// and display the correct product on the detail page
 function getProductIdFromURL() {
   const params = new URLSearchParams(window.location.search);
   return params.get("id");
@@ -36,27 +38,9 @@ function addToCart(product) {
   }
 
   saveCart(cart);
-
-  if (typeof updateCartCount === "function") {
-    updateCartCount();
-  }
-
-  // showToast(`${product.title} added to cart`);
+  alert(`${product.title} added to cart`);
 }
 
-// function showToast(message) {
-//   const toast = document.createElement("div");
-//   toast.textContent = message;
-
-//   toast.className =
-//     "fixed bottom-5 right-5 bg-black text-white px-4 py-2 rounded-lg shadow-lg text-sm z-50";
-
-//   document.body.appendChild(toast);
-
-//   setTimeout(() => {
-//     toast.remove();
-//   }, 2000);
-// }
 
 function renderProduct(product) {
   productDetails.innerHTML = `
@@ -86,37 +70,6 @@ function renderProduct(product) {
   document.getElementById("addToCartBtn")?.addEventListener("click", () => addToCart(product));
 }
 
-function renderRelatedProducts(products) {
-  relatedProducts.innerHTML = "";
-  products.forEach(product => {
-    const card = document.createElement("div");
-    card.className = "group bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition duration-300 flex flex-col";
-    card.innerHTML = `
-      <a href="product-image.html?id=${product.id}" class="block">
-        <div class="h-64 bg-gray-100 overflow-hidden">
-          <img src="${product.thumbnail}" alt="${product.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
-        </div>
-      </a>
-      <div class="p-5 flex flex-col flex-1">
-        <p class="text-sm text-gray-500 mb-2 capitalize">${product.category}</p>
-        <a href="product-image.html?id=${product.id}">
-          <h3 class="text-lg font-semibold text-gray-900 mb-3 min-h-[56px] hover:text-pink-600 transition">${product.title}</h3>
-        </a>
-        <div class="mt-auto flex items-center justify-between">
-          <p class="text-xl font-bold text-pink-600">$${product.price}</p>
-          <button class="related-add-to-cart bg-black text-white px-4 py-2 rounded-lg hover:bg-pink-600 transition" data-id="${product.id}">Add to Cart</button>
-        </div>
-      </div>`;
-    relatedProducts.appendChild(card);
-  });
-  document.querySelectorAll('.related-add-to-cart').forEach(button => {
-    button.addEventListener('click', () => {
-      const id = Number(button.dataset.id);
-      const product = products.find(item => item.id === id);
-      if (product) addToCart(product);
-    });
-  });
-}
 
 async function fetchProduct() {
   const productId = getProductIdFromURL();

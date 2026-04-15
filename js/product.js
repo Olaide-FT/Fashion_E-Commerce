@@ -7,16 +7,6 @@ const CART_KEY = "fashionCart";
 let allProducts = [];
 
 
-function getCart() { return JSON.parse(localStorage.getItem(CART_KEY)) || []; }
-function saveCart(cart) { localStorage.setItem(CART_KEY, JSON.stringify(cart)); }
-function addToCart(product) {
-  const cart = getCart();
-  const existing = cart.find(item => item.id === product.id);
-  if (existing) existing.quantity += 1;
-  else cart.push({ id: product.id, title: product.title, price: product.price, image: product.thumbnail, quantity: 1 });
-  saveCart(cart);
-  alert(`${product.title} added to cart`);
-}
 
 function renderProducts(products) {
   productGrid.innerHTML = "";
@@ -64,13 +54,24 @@ function applyFilters() {
   const query = (searchInput?.value || '').trim().toLowerCase();
   const sort = sortSelect?.value || 'default';
 
-  if (query) filtered = filtered.filter(p => p.title.toLowerCase().includes(query) || p.category.toLowerCase().includes(query) || (p.brand || '').toLowerCase().includes(query));
-  if (sort === 'low-high') filtered.sort((a,b) => a.price - b.price);
-  if (sort === 'high-low') filtered.sort((a,b) => b.price - a.price);
-  if (sort === 'title-az') filtered.sort((a,b) => a.title.localeCompare(b.title));
+  if (query)
+    filtered = filtered.filter(p =>
+      p.title.toLowerCase().includes(query) || p.category.toLowerCase().includes(query) || (p.brand || '').toLowerCase().includes(query));
+  if (sort === 'low-high')
+    filtered.sort((a, b) => a.price - b.price);
+
+  if (sort === 'high-low')
+    filtered.sort((a, b) => b.price - a.price);
+
+  if (sort === 'title-az')
+    filtered.sort((a, b) => a.title.localeCompare(b.title));
 
   renderProducts(filtered);
 }
+
+// Fetches a list of products from the dummy JSON API.
+//  If the request is successful, it renders the products in the product grid.
+//  If the request fails, it logs an error message and shows an error message.
 
 async function fetchProducts() {
   try {

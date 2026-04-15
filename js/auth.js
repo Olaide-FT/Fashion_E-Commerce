@@ -20,12 +20,12 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Handle paste specifically
-    input.addEventListener("paste", (e) => {
-      e.preventDefault();
-      let pasted = (e.clipboardData || window.clipboardData).getData("text");
-      pasted = pasted.replace(/[0-9]/g, "");
-      document.execCommand("insertText", false, pasted);
-    });
+  //   input.addEventListener("paste", (e) => {
+  //     e.preventDefault();
+  //     let pasted = (e.clipboardData || window.clipboardData).getData("text");
+  //     pasted = pasted.replace(/[0-9]/g, "");
+  //     document.execCommand("insertText", false, pasted);
+  //   });
   }
 
   // Apply to all name fields (works for both pages)
@@ -99,22 +99,22 @@ document.addEventListener("DOMContentLoaded", () => {
     const lastNameInput = form.querySelector(
       'input[placeholder="Last name"]'
     );
-    const emailInput = form.querySelector('input[type="email"]');
-    const passwordInputs = form.querySelectorAll('input[type="password"]');
-    const passwordInput = passwordInputs[0];
-    const confirmPasswordInput = passwordInputs[1];
-    const termsCheckbox = form.querySelector('input[type="checkbox"]');
+    let emailInput = form.querySelector('input[type="email"]');
+    let passwordInputs = form.querySelectorAll('input[type="password"]');
+    let passwordInput = passwordInputs[0];
+    let confirmPasswordInput = passwordInputs[1];
+    let termsCheckbox = form.querySelector('input[type="checkbox"]');
 
     form.addEventListener("submit", (e) => {
       e.preventDefault();
       clearMessage(form);
 
-      const firstName = firstNameInput.value.trim();
-      const lastName = lastNameInput.value.trim();
-      const email = emailInput.value.trim().toLowerCase();
-      const password = passwordInput.value.trim();
-      const confirmPassword = confirmPasswordInput.value.trim();
-      const acceptedTerms = termsCheckbox.checked;
+      let firstName = firstNameInput.value.trim();
+      let lastName = lastNameInput.value.trim();
+      let email = emailInput.value.trim().toLowerCase();
+      let password = passwordInput.value.trim();
+      let confirmPassword = confirmPasswordInput.value.trim();
+      let acceptedTerms = termsCheckbox.checked;
 
       if (!firstName || !lastName || !email || !password || !confirmPassword) {
         showMessage(form, "Please fill in all fields.");
@@ -232,7 +232,9 @@ document.addEventListener("DOMContentLoaded", () => {
       }, 1500);
     });
   };
-
+  
+// On login page → behave like login system
+// On register page → behave like register system
   if (isRegisterPage) initRegister();
   if (isLoginPage) initLogin();
 });

@@ -17,6 +17,7 @@ function increaseQuantity(productId) {
   saveCart(cart);
   renderCart();
 }
+
 function decreaseQuantity(productId) {
   const cart = getCart();
   const item = cart.find(product => product.id === productId);
@@ -49,7 +50,7 @@ function renderCart() {
         ${cart.map(item => `
           <div class="bg-white rounded-3xl p-5 shadow-sm border border-gray-200 flex flex-col sm:flex-row gap-5 items-center">
             <div class="w-28 h-28 rounded-2xl bg-gray-100 overflow-hidden shrink-0">
-              <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover">
+              <img src="${item.thumbnail}" alt="${item.title}" class="w-full h-full object-cover">
             </div>
             <div class="flex-1 text-center sm:text-left">
               <h3 class="text-xl font-semibold text-gray-900 mb-2">${item.title}</h3>

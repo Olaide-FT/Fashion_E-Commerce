@@ -30,38 +30,38 @@ function updateActiveNav() {
     });
 }
 
-window.addEventListener("scroll", updateActiveNav);
-updateActiveNav();
+// window.addEventListener("scroll", updateActiveNav);
+// updateActiveNav();
 
 
-const revealItems = document.querySelectorAll(".reveal");
+// const revealItems = document.querySelectorAll(".reveal");
 
-revealItems.forEach((item) => {
-    item.classList.add(
-        "opacity-0",
-        "translate-y-6",
-        "transition",
-        "duration-700",
-        "ease-out"
-    );
-});
+// revealItems.forEach((item) => {
+//     item.classList.add(
+//         "opacity-0",
+//         "translate-y-6",
+//         "transition",
+//         "duration-700",
+//         "ease-out"
+//     );
+// });
 
-const revealObserver = new IntersectionObserver(
-    (entries) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                entry.target.classList.remove("opacity-0", "translate-y-6");
-                entry.target.classList.add("opacity-100", "translate-y-0");
-                revealObserver.unobserve(entry.target);
-            }
-        });
-    },
-    {
-        threshold: 0.12,
-    }
-);
+// const revealObserver = new IntersectionObserver(
+//     (entries) => {
+//         entries.forEach((entry) => {
+//             if (entry.isIntersecting) {
+//                 entry.target.classList.remove("opacity-0", "translate-y-6");
+//                 entry.target.classList.add("opacity-100", "translate-y-0");
+//                 revealObserver.unobserve(entry.target);
+//             }
+//         });
+//     },
+//     {
+//         threshold: 0.12,
+//     }
+// );
 
-revealItems.forEach((item) => revealObserver.observe(item));
+// revealItems.forEach((item) => revealObserver.observe(item));
 
 const backToTop = document.getElementById("backToTop");
 
