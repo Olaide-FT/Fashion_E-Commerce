@@ -30,9 +30,9 @@ function renderProducts(products) {
       <div class="p-5 flex flex-col flex-1">
         <p class="text-sm text-gray-500 mb-2 capitalize">${product.category}</p>
         <a href="product-image.html?id=${product.id}">
-          <h3 class="text-lg font-semibold text-gray-900 mb-3 min-h-[56px] hover:text-pink-600 transition">${product.title}</h3>
+          <h3 class="text-lg font-semibold text-gray-900 mb-2 hover:text-pink-600 transition">${product.title}</h3>
         </a>
-        <p class="text-sm text-gray-600 leading-6 mb-4 min-h-[72px] overflow-hidden">${product.description.slice(0, 90)}...</p>
+        <p class="text-sm text-gray-600 leading-6 mb-4 overflow-hidden">${product.description.slice(0, 90)}...</p>
         <div class="mt-auto flex items-center justify-between">
           <p class="text-xl font-bold text-pink-600">$${product.price}</p>
           <button class="add-to-cart bg-black text-white px-4 py-2 rounded-lg hover:bg-pink-600 transition" data-id="${product.id}">Add to Cart</button>
